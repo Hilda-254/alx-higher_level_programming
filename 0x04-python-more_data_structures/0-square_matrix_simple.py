@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 def square_matrix_simple(matrix=[]):
-    copy_matrix = matrix[:]
+    copy_matrix = copy.deepcopy(matrix)
     square_matrix = []
-    for row in copy_matrix:
-        square_row = []
-        for val in row:
-            square_row.append(val ** 2)
-            square_matrix.append(square_row)
-            return square_matrix
+    for i in range(len(matrix)):
+        row = []
+        for j in range(len(matrix[i])):
+            row.append((matrix[i][j] ** 2))
+        square_matrix.append(row)
+    return square_matrix
