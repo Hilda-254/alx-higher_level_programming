@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-# 4-square.py by HILDA MUNJURI
-"""A class Square that defines a square by: (based on 3-square.py)"""
+# 5-square.py by HILDA MUNJURI
+"""A class Square that defines a square by: (based on 4-square.py)"""
 
 
 class Square:
@@ -38,3 +38,12 @@ class Square:
     def area(self):
         """Calculate area of square"""
         return self.__size ** 2
+
+    def my_print(self):
+        """Prints in stdout the square with the character # """
+
+        if self.__size == 0:
+            print()
+
+        for i in range(self.__size):
+            print("#" * self.__size)
