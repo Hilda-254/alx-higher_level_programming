@@ -1,0 +1,26 @@
+This test case checks the function with various types of inputs and also ensures that it raises a TypeError with the correct message when invalid inputs are given
+=====================================================================================================================================================
+
+The 0-add_integer module takes two integers or floats as arguments and returns their sum
+
+Usage
+=====
+Importing function from the module:
+    >>> add_integer = __import__('0-add_integer').add_integer
+def test_add_integer():
+    assert add_integer(1, 2) == 3
+    assert add_integer(1.0, 2) == 3
+    assert add_integer(1, 2.0) == 3
+    assert add_integer(1.0, 2.0) == 3
+    assert add_integer(-1, -2) == -3
+    assert add_integer(-1.0, -2) == -3
+    assert add_integer(-1, -2.0) == -3
+    assert add_integer(-1.0, -2.0) == -3
+    try:
+        add_integer("a", 2)
+    except TypeError as e:
+        assert str(e) == "a must be an integer or b must be an integer"
+    try:
+        add_integer(1, "b")
+    except TypeError as e:
+        assert str(e) == "a must be an integer or b must be an integer"
