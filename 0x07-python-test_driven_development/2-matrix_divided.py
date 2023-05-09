@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 def matrix_divided(matrix, div):
     """A function that divides all elements of a matrix."""
-    if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix) or \
-            not all(isinstance(num, (int, float)) for row in matrix for num in row):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+    if not isinstance(matrix, list) or not all(isinstance(row, list)
+        for row in matrix) or \
+                not all(isinstance(num, (int, float))
+                    for row in matrix for num in row):
+        raise TypeError("matrix must be a matrix (list of lists)of
+                integers/floats")
 
     row_size = len(matrix[0])
     if not all(len(row) == row_size for row in matrix):
