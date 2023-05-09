@@ -1,5 +1,5 @@
 import unittest
-from 6-max_integer_test.py import max_integer
+from max_integer_test import max_integer
 
 class MaxIntegerTest(unittest.TestCase):
     def test_empty_list(self):
