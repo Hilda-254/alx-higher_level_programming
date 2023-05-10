@@ -1,0 +1,48 @@
+from 5-text_indentation import text_indentation
+
+def test_text_indentation():
+    # Test Case 1: Basic input with a period
+    text = "This is a sentence."
+    expected_output = "This is a sentence.\n\n"
+    assert text_indentation(text) == expected_output
+
+    # Test Case 2: Basic input with a question mark
+    text = "What is your name?"
+    expected_output = "What is your name?\n\n"
+    assert text_indentation(text) == expected_output
+
+    # Test Case 3: Basic input with a colon
+    text = "The options are:"
+    expected_output = "The options are:\n\n"
+    assert text_indentation(text) == expected_output
+
+    # Test Case 4: Multiple punctuation marks
+    text = "Hello! How are you?"
+    expected_output = "Hello!\n\nHow are you?\n\n"
+    assert text_indentation(text) == expected_output
+
+    # Test Case 5: Empty input
+    text = ""
+    expected_output = ""
+    assert text_indentation(text) == expected_output
+
+    # Test Case 6: Input with no punctuation marks
+    text = "This is a test without punctuation"
+    expected_output = "This is a test without punctuation"
+    assert text_indentation(text) == expected_output
+
+    # Test Case 7: Input with mixed punctuation marks
+    text = "Hello! How are you: What's your name?"
+    expected_output = "Hello!\n\nHow are you:\n\nWhat's your name?\n\n"
+    assert text_indentation(text) == expected_output
+
+    # Test Case 8: Input with consecutive punctuation marks
+    text = "This is an example..."
+    expected_output = "This is an example...\n\n"
+    assert text_indentation(text) == expected_output
+
+    print("All tests pass")
+
+
+# Run the test cases
+test_text_indentation()
