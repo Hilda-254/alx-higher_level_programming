@@ -4,32 +4,54 @@
 import unittest
 matrix_mul = __import__('100-matrix_mul').matrix_mul
 
-class MatrixMulTest(unittest.TestCase):
-    def test_matrix_multiplication(self):
-        m_a = [[1, 2, 3],
-               [4, 5, 6]]
-        m_b = [[7, 8],
-               [9, 10],
-               [11, 12]]
-        expected_result = [[58, 64],
-                           [139, 154]]
-        result = matrix_mul(m_a, m_b)
-        self.assertEqual(result, expected_result)
+class MatrixMulTestCase(unittest.TestCase):
+    def test_valid_matrices(self):
+        m_a = [[1, 2], [3, 4]]
+        m_b = [[1, 2], [3, 4]]
+        expected_result = [[7, 10], [15, 22]]
+        self.assertEqual(matrix_mul(m_a, m_b), expected_result)
 
-    def test_invalid_input(self):
-        invalid_a = [[1, 2, 3], [4, 5, "6"]]  # Invalid type in m_a
-        invalid_b = [[7, 8], [9, 10], [11, "12"]]  # Invalid type in m_b
-        empty_a = []  # Empty m_a
-        empty_b = [[]]  # Empty m_b
-        invalid_size_a = [[1, 2, 3], [4, 5]]  # Rows of different sizes in m_a
-        invalid_size_b = [[7, 8], [9, 10, 11]]  # Rows of different sizes in m_b
+    def test_invalid_matrices(self):
+        m_a = [[1, 2]]
+        m_b = [[3, 4], [5, 6]]
+        with self.assertRaises(ValueError):
+            matrix_mul(m_a, m_b)
 
-        self.assertRaises(TypeError, matrix_mul, invalid_a, [[1]])
-        self.assertRaises(TypeError, matrix_mul, [[1]], invalid_b)
-        self.assertRaises(ValueError, matrix_mul, empty_a, [[1]])
-        self.assertRaises(ValueError, matrix_mul, [[1]], empty_b)
-        self.assertRaises(TypeError, matrix_mul, invalid_size_a, [[1]])
-        self.assertRaises(TypeError, matrix_mul, [[1]], invalid_size_b)
+    def test_non_list_input(self):
+        m_a = 1
+        m_b = [[3, 4], [5, 6]]
+        with self.assertRaises(TypeError):
+            matrix_mul(m_a, m_b)
+
+    def test_non_list_of_lists_input(self):
+        m_a = [[1, 2], [3, 4]]
+        m_b = [3, 4]
+        with self.assertRaises(TypeError):
+            matrix_mul(m_a, m_b)
+
+    def test_empty_matrices(self):
+        m_a = []
+        m_b = [[]]
+        with self.assertRaises(ValueError):
+            matrix_mul(m_a, m_b)
+
+    def test_non_numeric_elements(self):
+        m_a = [[1, 2], [3, 'four']]
+        m_b = [[1, 2], [3, 4]]
+        with self.assertRaises(TypeError):
+            matrix_mul(m_a, m_b)
+
+    def test_non_rectangle_matrices(self):
+        m_a = [[1, 2], [3, 4, 5]]
+        m_b = [[1, 2], [3, 4]]
+        with self.assertRaises(TypeError):
+            matrix_mul(m_a, m_b)
+
+    def test_incompatible_matrices(self):
+        m_a = [[1, 2], [3, 4]]
+        m_b = [[1, 2, 3], [4, 5, 6]]
+        with self.assertRaises(ValueError):
+            matrix_mul(m_a, m_b)
 
 if __name__ == '__main__':
     unittest.main()
