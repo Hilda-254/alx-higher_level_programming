@@ -1,0 +1,35 @@
+#!/usr/bin/python3
+"""Unittest for matrix_mul([...])
+"""
+import unittest
+matrix_mul = __import__('100-matrix_mul').matrix_mul
+
+class MatrixMulTest(unittest.TestCase):
+    def test_matrix_multiplication(self):
+        m_a = [[1, 2, 3],
+               [4, 5, 6]]
+        m_b = [[7, 8],
+               [9, 10],
+               [11, 12]]
+        expected_result = [[58, 64],
+                           [139, 154]]
+        result = matrix_mul(m_a, m_b)
+        self.assertEqual(result, expected_result)
+
+    def test_invalid_input(self):
+        invalid_a = [[1, 2, 3], [4, 5, "6"]]  # Invalid type in m_a
+        invalid_b = [[7, 8], [9, 10], [11, "12"]]  # Invalid type in m_b
+        empty_a = []  # Empty m_a
+        empty_b = [[]]  # Empty m_b
+        invalid_size_a = [[1, 2, 3], [4, 5]]  # Rows of different sizes in m_a
+        invalid_size_b = [[7, 8], [9, 10, 11]]  # Rows of different sizes in m_b
+
+        self.assertRaises(TypeError, matrix_mul, invalid_a, [[1]])
+        self.assertRaises(TypeError, matrix_mul, [[1]], invalid_b)
+        self.assertRaises(ValueError, matrix_mul, empty_a, [[1]])
+        self.assertRaises(ValueError, matrix_mul, [[1]], empty_b)
+        self.assertRaises(TypeError, matrix_mul, invalid_size_a, [[1]])
+        self.assertRaises(TypeError, matrix_mul, [[1]], invalid_size_b)
+
+if __name__ == '__main__':
+    unittest.main()
